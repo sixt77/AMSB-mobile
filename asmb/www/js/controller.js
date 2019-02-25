@@ -1,5 +1,6 @@
 function connect(log){
     var identifiant = document.log.mail.value;
     var password = document.log.pass.value;
-    console.log(login(identifiant, password));
+    var user_info = login(identifiant, password);
+    alert(user_info.user_id);
 }
