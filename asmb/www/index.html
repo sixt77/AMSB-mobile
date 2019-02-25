@@ -28,14 +28,21 @@
     </head>
     <body>
         <div class="app">
-            <h1>Connexion</h1><br>
-            <div id="connexion" class="blink">
-                <form name="log" method="get">
-                    <input type="text" name="mail" placeholder="identifiant"/>
-                    <input type="password" name="pass" value=""/>
-                    <input type="button" name="bouton" value="Valider" onclick="connect(log)"/>
-                </form>
+            <div id="connection">
+                <h1>Connexion</h1><br>
+                <div id="connexion" class="blink">
+                    <form name="log" method="get">
+                        <input type="text" name="mail" placeholder="identifiant"/>
+                        <input type="password" name="pass" value=""/>
+                        <input type="button" name="bouton" value="Valider" onclick="login(log)"/>
+                    </form>
+                </div>
             </div>
+            <div id="accueil" style="visibility: hidden">
+                <div id="homeText"></div>
+                <input type="button" value="déconnection" onclick="logOff()">
+            </div>
+
         </div>
         <!--<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>-->
