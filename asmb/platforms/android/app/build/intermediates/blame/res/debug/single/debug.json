@@ -4,12 +4,12 @@
         "source": "D:\\android app\\cordova-project\\asmb\\platforms\\android\\app\\src\\main\\res\\drawable-land-xxxhdpi\\screen.png"
     },
     {
-        "merged": "D:\\android app\\cordova-project\\asmb\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-land-hdpi_screen.png.flat",
-        "source": "D:\\android app\\cordova-project\\asmb\\platforms\\android\\app\\src\\main\\res\\drawable-land-hdpi\\screen.png"
-    },
-    {
         "merged": "C:\\Users\\damie\\WebstormProjects\\ASMB-mobile\\asmb\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_icon.png.flat",
         "source": "C:\\Users\\damie\\WebstormProjects\\ASMB-mobile\\asmb\\platforms\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\icon.png"
+    },
+    {
+        "merged": "D:\\android app\\cordova-project\\asmb\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-land-hdpi_screen.png.flat",
+        "source": "D:\\android app\\cordova-project\\asmb\\platforms\\android\\app\\src\\main\\res\\drawable-land-hdpi\\screen.png"
     },
     {
         "merged": "C:\\Users\\damie\\WebstormProjects\\ASMB-mobile\\asmb\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_icon.png.flat",
