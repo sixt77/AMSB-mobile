@@ -7,7 +7,7 @@ function connect(log){
         document.getElementById('connection').style.display ='none';
         document.getElementById('homeText').innerText = 'bonjour '+user_info.user_first_name;
         document.getElementById('accueil').style.display = 'block';
-        document.getElementById('menu').style.display = 'block'
+        document.getElementById('menu').style.display = 'block';
         addButtonRoles(user_role);
     }else{
         alert('connection refusé');
@@ -44,9 +44,4 @@ function openNav() {
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
-}
-
-function hideAccueil(){
-    document.getElementById('accueil').style.display = 'none';
-    document.getElementById('menu').style.display = 'none'
 }
