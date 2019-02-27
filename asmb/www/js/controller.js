@@ -4,9 +4,9 @@ function connect(log){
     user_info = login(identifiant, password);
     if(user_info.user_id !== undefined){
         user_role = (get_user_info(user_info.user_id));
-        document.getElementById('connection').style.visibility ='hidden';
+        document.getElementById('connection').style.display ='none';
         document.getElementById('homeText').innerText = 'bonjour '+user_info.user_first_name;
-        document.getElementById('accueil').style.visibility = 'visible';
+        document.getElementById('accueil').style.display = 'block';
         addButtonRoles(user_role);
     }else{
         alert('connection refusé');
@@ -14,9 +14,9 @@ function connect(log){
 }
 
 function logOff(){
-    document.getElementById('accueil').style.visibility = 'hidden';
+    document.getElementById('accueil').style.display = 'none';
     document.getElementById('homeText').innerText = '';
-    document.getElementById('connection').style.visibility ='visible';
+    document.getElementById('connection').style.display ='none';
 
 }
 
@@ -43,4 +43,8 @@ function openNav() {
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
+}
+
+function hideAccueil(){
+    document.getElementById('accueil').style.display = 'none';
 }

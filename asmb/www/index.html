@@ -26,7 +26,7 @@
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <title>AMSB</title>
     </head>
-    <body>
+    <body onload="hideAccueil()">
 
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -43,8 +43,8 @@
                     </form>
                 </div>
             </div>
-            <div id="accueil" style="visibility: hidden">
-                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+            <div id="accueil">
+                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
                 <div id="homeText"></div>
                 <div id="homebutton"></div>
                 <input type="button" value="déconnection" onclick="logOff()">
