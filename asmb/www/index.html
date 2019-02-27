@@ -27,6 +27,11 @@
         <title>AMSB</title>
     </head>
     <body>
+
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+        </div>
         <div class="app">
             <div id="connection">
                 <h1>Connexion</h1><br>
@@ -39,6 +44,7 @@
                 </div>
             </div>
             <div id="accueil" style="visibility: hidden">
+                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
                 <div id="homeText"></div>
                 <div id="homebutton"></div>
                 <input type="button" value="déconnection" onclick="logOff()">

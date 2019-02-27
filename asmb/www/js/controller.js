@@ -31,7 +31,16 @@ function addButtonRoles(user_role){
             btn.setAttribute("onclick", "alert('je suis :"+role_list[loop]+"')");
             btn.innerHTML = role_list[loop];
             document.getElementById('homebutton').appendChild(btn);
+            document.getElementById('mySidenav').innerHTML = document.getElementById('mySidenav').innerHTML + '<a href = "#">'+role_list[loop]+'</a>';
             loop++;
         }
     }
+}
+
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
 }
