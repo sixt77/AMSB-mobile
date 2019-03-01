@@ -52,7 +52,7 @@ function closeNav() {
 
 function timestampToTime(UNIX_timestamp){
     var a = new Date(UNIX_timestamp * 1000);
-    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var months = ['Janvier','Fevrier','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Decembre'];
     var year = a.getFullYear();
     var month = months[a.getMonth()];
     var date = a.getDate();
@@ -72,7 +72,6 @@ function displayRole(role){
     }
     var match_divs = document.getElementsByClassName('match_list');
     for (var i = 0; i < match_divs.length; i++) {
-        match_divs[i].style.display = "block";
         match_divs[i].innerHTML = display_match(matchs);
     }
 }
