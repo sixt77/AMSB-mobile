@@ -15,3 +15,21 @@ function get_user_info(user_id){
         return JSON.parse(request.responseText);
     }
 }
+
+function get_all_matchs(){
+    var request = new XMLHttpRequest();
+    request.open('GET', 'http://os-vps418.infomaniak.ch/etu_info/amsb1/DEV/index.php/api?action=get_match_list', false);  // `false` makes the request synchronous
+    request.send(null);
+    if (request.status === 200) {
+        return JSON.parse(request.responseText);
+    }
+}
+
+function get_matchs_by_id(user_id){
+    var request = new XMLHttpRequest();
+    request.open('GET', 'http://os-vps418.infomaniak.ch/etu_info/amsb1/DEV/index.php/api?action=get_match_list_by_id_player&player_id='+user_id, false);  // `false` makes the request synchronous
+    request.send(null);
+    if (request.status === 200) {
+        return JSON.parse(request.responseText);
+    }
+}

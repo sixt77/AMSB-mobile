@@ -97,12 +97,6 @@ h1 {
     -webkit-animation:fade 3000ms infinite;
 }
 
-.testButton{
-    height: 50px;
-    width: 50px;
-    background-color: green;
-}
-
 /* TEST POUR MENU LATERAL */
 
 .sidenav {
@@ -127,8 +121,20 @@ h1 {
     transition: 0.3s;
 }
 
-.sidenav a:hover {
+.testButton:hover {
     color: #f1f1f1;
+}
+
+.testButton {
+    background-color: black;
+    color: #818181;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    display: block;
+    transition: 0.3s;
+    width:100%;
+    border: none;
 }
 
 .sidenav .closebtn {
@@ -141,6 +147,10 @@ h1 {
 
 .hidden {
     display: none;
+}
+
+.menu {
+    width: 140px;
 }
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}

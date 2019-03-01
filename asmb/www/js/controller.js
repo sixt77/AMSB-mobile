@@ -29,10 +29,9 @@ function addButtonRoles(user_role){
             var btn = document.createElement("BUTTON");
             btn.setAttribute("id", "test1");
             btn.setAttribute("class", "testButton");
-            btn.setAttribute("onclick", "alert('je suis :"+role_list[loop]+"')");
+            btn.setAttribute("onclick", "choixRole('"+role_list[loop]+"')");
             btn.innerHTML = role_list[loop];
             document.getElementById('buttontest').appendChild(btn);
-            document.getElementById('mySidenav').innerHTML = document.getElementById('mySidenav').innerHTML + '<a href = "#">'+role_list[loop]+'</a>';
             loop++;
         }
     }
@@ -44,4 +43,35 @@ function openNav() {
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
+}
+
+function timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    return time;
+}
+function choixRole(role){
+    console.log(role);
+    if (role == "joueur"){
+        var matchs= get_matchs_by_id(user_role.joueur);
+    } else {
+        var matchs = get_all_matchs();
+    }
+    var division = document.getElementById(role);
+    division.style.display = 'block';
+    division.innerHTML = "<table><thead><tr><th>Date et heure</th><th>Equipe 1</th><th>Equipe 2</th></tr></thead><tbody>";
+    for (var i in matchs) {
+        if(matchs[i] != null){
+            division.innerHTML = division.innerHTML + "<tr><td>"+timeConverter(matchs[i].date)+"</td><td>matchs[i].team[0].nom</td><td>matchs[i].team[1].nom</td></tr>";
+            loop++;
+        }
+    }
+    division.innerHTML = division.innerHTML + "</tbody></table>";
 }
