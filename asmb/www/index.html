@@ -1,86 +1,87 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!--
+    Customize this policy to fit your own app's needs. For more guidance, see:
+        https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+    Some notes:
+        * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+        * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+        * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+            * Enable inline JS: add 'unsafe-inline' to default-src
+    -->
 
-        <script type="text/javascript" src="js/controller.js"></script>
-        <script type="text/javascript" src="js/api.js"></script>
-        <script
-                src="https://code.jquery.com/jquery-3.3.1.min.js"
-                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-                crossorigin="anonymous">
-        </script>
-        <span id = "menu" class = "hidden menu" style="font-size:20px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>AMSB</title>
-    </head>
-    <body>
+    <script type="text/javascript" src="js/controller.js"></script>
+    <script type="text/javascript" src="js/api.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+    </script>
+    <span id = "menu" class = "hidden menu" style="font-size:20px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>AMSB</title>
+</head>
+<body>
 
-        <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <div id="buttontest"></div>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div id="button_list"></div>
+</div>
+
+<div class="app">
+    <div id="connection">
+        <h1>Connexion</h1><br>
+        <div id="connexion" class="blink">
+            <form name="log" method="get">
+                <input type="text" name="mail" placeholder="identifiant"/>
+                <input type="password" name="pass" value=""/>
+                <input type="button" name="bouton" value="Valider" onclick="connect(log)"/>
+            </form>
         </div>
+    </div>
+    <div id="accueil" class = "hidden">
 
-        <div class="app">
-            <div id="connection">
-                <h1>Connexion</h1><br>
-                <div id="connexion" class="blink">
-                    <form name="log" method="get">
-                        <input type="text" name="mail" placeholder="identifiant"/>
-                        <input type="password" name="pass" value=""/>
-                        <input type="button" name="bouton" value="Valider" onclick="connect(log)"/>
-                    </form>
-                </div>
-            </div>
-            <div id="accueil" class = "hidden">
+        <div id="homeText"></div>
+        <div id="homebutton"></div>
+        <input type="button" value="déconnection" onclick="logOff()">
+    </div>
+    <div id="joueur" class="hidden role_div">
+        <div class="match_list"></div>
 
-                <div id="homeText"></div>
-                <div id="homebutton"></div>
-                <input type="button" value="déconnection" onclick="logOff()">
-            </div>
-            <div id="joueur" class="hidden">
+    </div>
+    <div id="dirigeant" class="hidden role_div">
+        <div class="match_list"></div>
+    </div>
+    <div id="otm" class="hidden role_div">
+        <div class="match_list"></div>
+    </div>
 
-            </div>
-            <div id="dirigeant" class="hidden">
+    <div id="coach" class="hidden role_div">
+        <div class="match_list"></div>
+    </div>
+    <div id="parent" class="hidden role_div">
+        <div class="match_list"></div>
+    </div>
+    <div id="benevole" class="hidden role_div">
+        <div class="match_list"></div>
+    </div>
 
-            </div>
-            <div id="otm" class="hidden">
+    <div id="utilisateur" class="hidden role_div">
+        <div class="match_list"></div>
+    </div>
 
-            </div>
+    <div id="arbitre" class="hidden role_div">
+        <div class="match_list"></div>
+    </div>
+</div>
+<!--<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>-->
 
-            <div id="coach" class="hidden">
-
-            </div>
-            <div id="parent" class="hidden">
-
-            </div>
-            <div id="benevole" class="hidden">
-
-            </div>
-
-            <div id="utilisateur" class="hidden">
-
-            </div>
-
-            <div id="arbitre" class="hidden">
-
-            </div>
-        </div>
-        <!--<script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>-->
-
-    </body>
+</body>
 </html>
