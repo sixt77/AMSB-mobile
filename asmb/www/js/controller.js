@@ -66,13 +66,17 @@ function displayRole(role){
     hide_class("role_div");
     document.getElementById(role).style.display ="block";
     if (role == "joueur"){
-        var matchs= get_matchs_by_id(user_role.joueur);
+        var matchsv= get_matchs_joueur(user_role.joueur);
+    } else if(role == "arbitre"){
+        var matchs = get_matchs_arbitre(user_role.arbitre);
+    } else if(role == "otm"){
+        var matchs = get_matchs_otm(user_role.otm);
     } else {
         var matchs = get_all_matchs();
     }
     var match_divs = document.getElementsByClassName('match_list');
     for (var i = 0; i < match_divs.length; i++) {
-        match_divs[i].innerHTML = display_match(matchs);
+        match_divs[i].innerHTML = display_match(matchs,role);
     }
 }
 
@@ -90,14 +94,45 @@ function show_class(className) {
     }
 }
 
-function display_match(matchs){
+function display_match(matchs,role){
     var retour = "";
-    for (x in matchs) {
-        retour = retour.concat("<div class=''>");
-        retour = retour.concat("<p>date : "+timestampToTime(matchs[x]['match']['date'])+"</p>");
-        retour = retour.concat("<p>equipe 1 : "+matchs[x]['team'][0]['nom']+"</p>");
-        retour = retour.concat("<p>equipe 2 : "+matchs[x]['team'][1]['nom']+"</p>");
-        retour =  retour.concat("</div>");
+    retour = retour.concat("<table class='affichageMatchs'>");
+    retour = retour.concat("<thead>");
+    if(role == 'otm') {
+        retour = retour.concat("<tr><th>Date</th><th>Equipe 1</th><th>Equipe 2</th><th>Lieu</th><th>Nombre d'OTM</th><th>Êtes-vous inscrit?</th></tr>");
+        retour = retour.concat("</thead>");
+        retour = retour.concat("<tbody>");
+        for (x in matchs) {
+
+            retour = retour.concat("<tr><td>"+timestampToTime(matchs[x]['match']['date'])+"</td><td>"+matchs[x]['team'][0]['nom']+"</td><td>"+matchs[x]['team'][1]['nom']+"</td><td>"+matchs[x]['match']['lieux']+"</td><td>"+matchs[x]['match']['nb_otm']+"</td>");
+            if(matchs[x]['match']['selected']){
+                retour = retour.concat("<td>Oui</td><td><input type='button' value='Désnscription' onclick='desinscription_match_otm("+matchs[x]['match']['id']+","+user_role.otm+")'/></td></tr>");
+            }else {
+                retour = retour.concat("<td>Non</td><td><input type='button' value='Inscription' onclick='inscription_match_otm("+matchs[x]['match']['id']+","+user_role.otm+")'/></td></tr>");
+            }
+        }
+    } else if (role == 'arbitre') {
+        console.log(matchs[0]);
+        retour = retour.concat("<tr><th>Date</th><th>Equipe 1</th><th>Equipe 2</th><th>Lieu</th><th>Nombre d'arbitres</th><th>Êtes-vous inscrit?</th></tr>");
+        retour = retour.concat("</thead>");
+        retour = retour.concat("<tbody>");
+        for (x in matchs) {
+            retour = retour.concat("<tr><td>"+timestampToTime(matchs[x]['match']['date'])+"</td><td>"+matchs[x]['team'][0]['nom']+"</td><td>"+matchs[x]['team'][1]['nom']+"</td><td>"+matchs[x]['match']['lieux']+"</td><td>"+matchs[x]['match']['nb_arbitres']+"</td>");
+            if(matchs[x]['match']['selected']){
+                retour = retour.concat("<td>Oui</td><td><input type='button' value='Désnscription' onclick='desinscription_match_arbitre("+matchs[x]['match']['id']+","+user_role.arbitre+")'/></td></tr>");
+            }else {
+                retour = retour.concat("<td>Non</td><td><input type='button' value='Inscription' onclick='inscription_match_arbitre("+matchs[x]['match']['id']+","+user_role.arbitre+")'/></td></tr>");
+            }
+        }
+    } else {
+        retour = retour.concat("<tr><th>Date</th><th>Equipe 1</th><th>Equipe 2</th><th>Lieu</th></tr>");
+        retour = retour.concat("</thead>");
+        retour = retour.concat("<tbody>");
+        for (x in matchs) {
+            retour = retour.concat("<tr><td>"+timestampToTime(matchs[x]['match']['date'])+"</td><td>"+matchs[x]['team'][0]['nom']+"</td><td>"+matchs[x]['team'][1]['nom']+"</td></tr>");
+        }
     }
+    retour = retour.concat("</tbody>");
+    retour = retour.concat("</table>");
     return retour;
 }
