@@ -63,10 +63,10 @@ function timestampToTime(UNIX_timestamp){
     return time;
 }
 function displayRole(role){
-    hide_class("role_div");
+    document.getElementsByClassName("role_div").style.display = "none";
     document.getElementById(role).style.display ="block";
     if (role == "joueur"){
-        var matchsv= get_matchs_joueur(user_role.joueur);
+        var matchs= get_matchs_joueur(user_role.joueur);
     } else if(role == "arbitre"){
         var matchs = get_matchs_arbitre(user_role.arbitre);
     } else if(role == "otm"){
@@ -106,9 +106,9 @@ function display_match(matchs,role){
 
             retour = retour.concat("<tr><td>"+timestampToTime(matchs[x]['match']['date'])+"</td><td>"+matchs[x]['team'][0]['nom']+"</td><td>"+matchs[x]['team'][1]['nom']+"</td><td>"+matchs[x]['match']['lieux']+"</td><td>"+matchs[x]['match']['nb_otm']+"</td>");
             if(matchs[x]['match']['selected']){
-                retour = retour.concat("<td>Oui</td><td><input type='button' value='Désnscription' onclick='desinscription_match_otm("+matchs[x]['match']['id']+","+user_role.otm+")'/></td></tr>");
+                retour = retour.concat("<td>Oui</td><td><input type='button' value='Désinscription' onclick='desinscription_match_otm("+matchs[x]['match']['id']+","+user_role.otm+"); refreshRole("+role+")'/></td></tr>");
             }else {
-                retour = retour.concat("<td>Non</td><td><input type='button' value='Inscription' onclick='inscription_match_otm("+matchs[x]['match']['id']+","+user_role.otm+")'/></td></tr>");
+                retour = retour.concat("<td>Non</td><td><input type='button' value='Inscription' onclick='inscription_match_otm("+matchs[x]['match']['id']+","+user_role.otm+"); refreshRole("+role+")'/></td></tr>");
             }
         }
     } else if (role == 'arbitre') {
@@ -119,9 +119,9 @@ function display_match(matchs,role){
         for (x in matchs) {
             retour = retour.concat("<tr><td>"+timestampToTime(matchs[x]['match']['date'])+"</td><td>"+matchs[x]['team'][0]['nom']+"</td><td>"+matchs[x]['team'][1]['nom']+"</td><td>"+matchs[x]['match']['lieux']+"</td><td>"+matchs[x]['match']['nb_arbitres']+"</td>");
             if(matchs[x]['match']['selected']){
-                retour = retour.concat("<td>Oui</td><td><input type='button' value='Désnscription' onclick='desinscription_match_arbitre("+matchs[x]['match']['id']+","+user_role.arbitre+")'/></td></tr>");
+                retour = retour.concat("<td>Oui</td><td><input type='button' value='Désinscription' onclick='desinscription_match_arbitre("+matchs[x]['match']['id']+","+user_role.arbitre+"); refreshRole("+role+")'/></td></tr>");
             }else {
-                retour = retour.concat("<td>Non</td><td><input type='button' value='Inscription' onclick='inscription_match_arbitre("+matchs[x]['match']['id']+","+user_role.arbitre+")'/></td></tr>");
+                retour = retour.concat("<td>Non</td><td><input type='button' value='Inscription' onclick='inscription_match_arbitre("+matchs[x]['match']['id']+","+user_role.arbitre+"); refreshRole("+role+")'/></td></tr>");
             }
         }
     } else {
@@ -129,10 +129,14 @@ function display_match(matchs,role){
         retour = retour.concat("</thead>");
         retour = retour.concat("<tbody>");
         for (x in matchs) {
-            retour = retour.concat("<tr><td>"+timestampToTime(matchs[x]['match']['date'])+"</td><td>"+matchs[x]['team'][0]['nom']+"</td><td>"+matchs[x]['team'][1]['nom']+"</td></tr>");
+            retour = retour.concat("<tr><td>"+timestampToTime(matchs[x]['match']['date'])+"</td><td>"+matchs[x]['team'][0]['nom']+"</td><td>"+matchs[x]['team'][1]['nom']+"</td><td>"+matchs[x]['match']['lieux']+"</td></tr>");
         }
     }
     retour = retour.concat("</tbody>");
     retour = retour.concat("</table>");
     return retour;
+}
+
+function refreshRole(role) {
+    displayRole(role);
 }
