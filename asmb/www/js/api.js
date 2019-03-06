@@ -89,3 +89,11 @@ function desinscription_match_arbitre(id_match,id_arbitre) {
     }
 }
 
+function get_joueurs(id_match,id_coach) {
+    var request = new XMLHttpRequest();
+    request.open('GET', 'http://os-vps418.infomaniak.ch/etu_info/amsb1/DEV/index.php/api?action=get_player_list_by_match_id&coach_id='+id_coach+'&match_id='+id_match, false);  // `false` makes the request synchronous
+    request.send(null);
+    if (request.status === 200) {
+        return JSON.parse(request.responseText);
+    }
+}

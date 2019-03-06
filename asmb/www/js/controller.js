@@ -2,23 +2,22 @@ function connect(log){
     identifiant = document.log.mail.value;
     password = document.log.pass.value;
     user_info = login(identifiant, password);
-    console.log(user_info);
     if(user_info.user_id !== undefined){
         user_role = (get_user_info(user_info.user_id));
-        document.getElementById('connection').style.display ='none';
-        document.getElementById('homeText').innerText = 'bonjour '+user_info.user_prenom;
-        document.getElementById('accueil').style.display = 'block';
-        document.getElementById('menu').style.display = 'block';
+        document.getElementById('connexion').style.display ='none';
+        document.getElementById('homeText').innerText = 'Bonjour '+user_info.user_prenom;
+        document.getElementById('accueil').style.display = 'inline-block';
+        document.getElementById('menu').style.display = 'inline-block';
         addButtonRoles(user_role);
     }else{
-        alert('connection refusé');
+        alert('Connexion refusée');
     }
 }
 
 function logOff(){
     document.getElementById('accueil').style.display = 'none';
     document.getElementById('homeText').innerText = '';
-    document.getElementById('connection').style.display ='block';
+    document.getElementById('connection').style.display ='inline-block';
     document.getElementById('menu').style.display = 'none';
     closeNav();
     hide_class("role_div");
@@ -32,8 +31,7 @@ function addButtonRoles(user_role){
     for (var i in user_role) {
         if(user_role[i] != null){
             var btn = document.createElement("BUTTON");
-            btn.setAttribute("id", "test1");
-            btn.setAttribute("class", "testButton");
+            btn.setAttribute("class", "roleButton");
             btn.setAttribute("onclick", "displayRole('"+role_list[loop]+"')");
             btn.innerHTML = role_list[loop];
             document.getElementById('button_list').appendChild(btn);
@@ -63,8 +61,8 @@ function timestampToTime(UNIX_timestamp){
     return time;
 }
 function displayRole(role){
-    document.getElementsByClassName("role_div").style.display = "none";
-    document.getElementById(role).style.display ="block";
+    hide_class("role_div");
+    document.getElementById(role).style.display ="inline-block";
     if (role == "joueur"){
         var matchs= get_matchs_joueur(user_role.joueur);
     } else if(role == "arbitre"){
@@ -90,7 +88,7 @@ function hide_class(className) {
 function show_class(className) {
     var items = document.getElementsByClassName(className);
     for (var i = 0; i < items.length; i++) {
-        items[i].style.display = "block";
+        items[i].style.display = "inline-block";
     }
 }
 
@@ -98,45 +96,58 @@ function display_match(matchs,role){
     var retour = "";
     retour = retour.concat("<table class='affichageMatchs'>");
     retour = retour.concat("<thead>");
-    if(role == 'otm') {
-        retour = retour.concat("<tr><th>Date</th><th>Equipe 1</th><th>Equipe 2</th><th>Lieu</th><th>Nombre d'OTM</th><th>Êtes-vous inscrit?</th></tr>");
-        retour = retour.concat("</thead>");
-        retour = retour.concat("<tbody>");
-        for (x in matchs) {
+    switch (role) {
+        case 'otm':
+            retour = retour.concat("<tr><th>Date</th><th>Equipe 1</th><th>Equipe 2</th><th>Lieu</th><th>Nombre d'OTM</th><th>Êtes-vous inscrit?</th></tr>");
+            retour = retour.concat("</thead>");
+            retour = retour.concat("<tbody>");
+            for (x in matchs) {
 
-            retour = retour.concat("<tr><td>"+timestampToTime(matchs[x]['match']['date'])+"</td><td>"+matchs[x]['team'][0]['nom']+"</td><td>"+matchs[x]['team'][1]['nom']+"</td><td>"+matchs[x]['match']['lieux']+"</td><td>"+matchs[x]['match']['nb_otm']+"</td>");
-            if(matchs[x]['match']['selected']){
-                retour = retour.concat("<td>Oui</td><td><input type='button' value='Désinscription' onclick='desinscription_match_otm("+matchs[x]['match']['id']+","+user_role.otm+"); refreshRole("+role+")'/></td></tr>");
-            }else {
-                retour = retour.concat("<td>Non</td><td><input type='button' value='Inscription' onclick='inscription_match_otm("+matchs[x]['match']['id']+","+user_role.otm+"); refreshRole("+role+")'/></td></tr>");
+                retour = retour.concat("<tr><td>"+timestampToTime(matchs[x]['match']['date'])+"</td><td>"+matchs[x]['team'][0]['nom']+"</td><td>"+matchs[x]['team'][1]['nom']+"</td><td>"+matchs[x]['match']['lieux']+"</td><td>"+matchs[x]['match']['nb_otm']+"</td>");
+                if(matchs[x]['match']['selected']){
+                    retour = retour.concat("<td>Oui</td><td><input type='button' value='Désnscription' class='formButton' onclick='desinscription_match_otm("+matchs[x]['match']['id']+","+user_role.otm+"); displayRole(\"otm\")'/></td></tr>");
+                }else {
+                    retour = retour.concat("<td>Non</td><td><input type='button' value='Inscription' class='formButton' onclick='inscription_match_otm("+matchs[x]['match']['id']+","+user_role.otm+"); displayRole(\"otm\")'/></td></tr>");
+                }
             }
-        }
-    } else if (role == 'arbitre') {
-        console.log(matchs[0]);
-        retour = retour.concat("<tr><th>Date</th><th>Equipe 1</th><th>Equipe 2</th><th>Lieu</th><th>Nombre d'arbitres</th><th>Êtes-vous inscrit?</th></tr>");
-        retour = retour.concat("</thead>");
-        retour = retour.concat("<tbody>");
-        for (x in matchs) {
-            retour = retour.concat("<tr><td>"+timestampToTime(matchs[x]['match']['date'])+"</td><td>"+matchs[x]['team'][0]['nom']+"</td><td>"+matchs[x]['team'][1]['nom']+"</td><td>"+matchs[x]['match']['lieux']+"</td><td>"+matchs[x]['match']['nb_arbitres']+"</td>");
-            if(matchs[x]['match']['selected']){
-                retour = retour.concat("<td>Oui</td><td><input type='button' value='Désinscription' onclick='desinscription_match_arbitre("+matchs[x]['match']['id']+","+user_role.arbitre+"); refreshRole("+role+")'/></td></tr>");
-            }else {
-                retour = retour.concat("<td>Non</td><td><input type='button' value='Inscription' onclick='inscription_match_arbitre("+matchs[x]['match']['id']+","+user_role.arbitre+"); refreshRole("+role+")'/></td></tr>");
+            break;
+        case 'arbitre':
+
+            retour = retour.concat("<tr><th>Date</th><th>Equipe 1</th><th>Equipe 2</th><th>Lieu</th><th>Nombre d'arbitres</th><th>Êtes-vous inscrit?</th></tr>");
+            retour = retour.concat("</thead>");
+            retour = retour.concat("<tbody>");
+            for (x in matchs) {
+                retour = retour.concat("<tr><td>"+timestampToTime(matchs[x]['match']['date'])+"</td><td>"+matchs[x]['team'][0]['nom']+"</td><td>"+matchs[x]['team'][1]['nom']+"</td><td>"+matchs[x]['match']['lieux']+"</td><td>"+matchs[x]['match']['nb_arbitres']+"</td>");
+                if(matchs[x]['match']['selected']){
+                    retour = retour.concat("<td>Oui</td><td><input type='button' value='Désnscription' class='formButton' onclick='desinscription_match_arbitre("+matchs[x]['match']['id']+","+user_role.arbitre+"); displayRole(\"arbitre\")'/></td></tr>");
+                }else {
+                    retour = retour.concat("<td>Non</td><td><input type='button' value='Inscription' class='formButton' onclick='inscription_match_arbitre("+matchs[x]['match']['id']+","+user_role.arbitre+"); displayRole(\"arbitre\")'/></td></tr>");
+                }
             }
-        }
-    } else {
-        retour = retour.concat("<tr><th>Date</th><th>Equipe 1</th><th>Equipe 2</th><th>Lieu</th></tr>");
-        retour = retour.concat("</thead>");
-        retour = retour.concat("<tbody>");
-        for (x in matchs) {
-            retour = retour.concat("<tr><td>"+timestampToTime(matchs[x]['match']['date'])+"</td><td>"+matchs[x]['team'][0]['nom']+"</td><td>"+matchs[x]['team'][1]['nom']+"</td><td>"+matchs[x]['match']['lieux']+"</td></tr>");
-        }
+            break;
+        case 'coach':
+            retour = retour.concat("<tr><th>Date</th><th>Equipe 1</th><th>Equipe 2</th><th>Lieu</th></tr>");
+            retour = retour.concat("</thead>");
+            retour = retour.concat("<tbody>");
+            for (x in matchs) {
+                retour = retour.concat("<tr><td>"+timestampToTime(matchs[x]['match']['date'])+"</td><td>"+matchs[x]['team'][0]['nom']+"</td><td>"+matchs[x]['team'][1]['nom']+"</td><td>"+matchs[x]['match']['lieux']+"</td><td><input type='button' value='Voir mon équipe' onclick='show_equipe("+matchs[x]['match']['id']+","+user_role.arbitre+")'/></td></tr>");
+            }
+            break;
+        default:
+            retour = retour.concat("<tr><th>Date</th><th>Equipe 1</th><th>Equipe 2</th><th>Lieu</th></tr>");
+            retour = retour.concat("</thead>");
+            retour = retour.concat("<tbody>");
+            for (x in matchs) {
+                var joueurs = get_joueurs(matchs[x]['match']['id'],user_role.entraineur);
+                retour = retour.concat("<tr><td>"+timestampToTime(matchs[x]['match']['date'])+"</td><td>"+matchs[x]['team'][0]['nom']+"</td><td>"+matchs[x]['team'][1]['nom']+"</td><td>"+matchs[x]['match']['lieux']+"</td></tr>");
+            }
+            break;
     }
     retour = retour.concat("</tbody>");
     retour = retour.concat("</table>");
     return retour;
 }
 
-function refreshRole(role) {
-    displayRole(role);
+function show_equipe(joueurs){
+
 }

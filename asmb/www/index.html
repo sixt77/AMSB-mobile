@@ -34,54 +34,48 @@
     <div id="button_list"></div>
 </div>
 
-<div class="app">
-    <div id="connection">
-        <h1>Connexion</h1><br>
-        <div id="connexion" class="blink">
-            <form name="log" method="get">
-                <input type="text" name="mail" placeholder="identifiant"/>
-                <input type="password" name="pass" value=""/>
-                <input type="button" name="bouton" value="Valider" onclick="connect(log)"/>
-            </form>
-        </div>
-    </div>
-    <div id="accueil" class = "hidden">
-
-        <div id="homeText"></div>
-        <div id="homebutton"></div>
-        <input type="button" value="déconnection" onclick="logOff()">
-    </div>
-    <div id="joueur" class="hidden role_div">
-        <div class="match_list"></div>
-
-    </div>
-    <div id="dirigeant" class="hidden role_div">
-        <div class="match_list"></div>
-    </div>
-    <div id="otm" class="hidden role_div">
-        <div class="match_list"></div>
-    </div>
-
-    <div id="coach" class="hidden role_div">
-        <div class="match_list"></div>
-    </div>
-    <div id="parent" class="hidden role_div">
-        <div class="match_list"></div>
-    </div>
-    <div id="benevole" class="hidden role_div">
-        <div class="match_list"></div>
-    </div>
-
-    <div id="utilisateur" class="hidden role_div">
-        <div class="match_list"></div>
-    </div>
-
-    <div id="arbitre" class="hidden role_div">
-        <div class="match_list"></div>
-    </div>
+<div id="connexion" class="centered">
+    <img class="logo" src="img/logo.png">
+    <form name="log" method="get" class="log centered">
+        <input type="text" name="mail" placeholder="identifiant"/>
+        <input type="password" name="pass" placeholder="mot de passe"/>
+        <input type="button" class="formButton" name="bouton" value="Valider" onclick="connect(log)"/>
+    </form>
 </div>
-<!--<script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="js/index.js"></script>-->
+    <div id="accueil" class = "hidden accueil">
+
+        <div id="homeText" class="centered"></div>
+        <div id="homebutton" class="centered"><input type="button" class="formButton centered" value="Déconnexion" onclick="logOff()"></div>
+
+    </div>
+    <div id="joueur" class="hidden role_div centered">
+        <div class="match_list centered"></div>
+    </div>
+    <div id="dirigeant" class="hidden role_div centered">
+        <div class="match_list centered"></div>
+    </div>
+    <div id="otm" class="hidden role_div centered">
+        <div class="match_list centered"></div>
+    </div>
+
+    <div id="entraineur" class="hidden role_div centered">
+        <div class="match_list centered"></div>
+        <div class="liste_joueurs centered"></div>
+    </div>
+    <div id="parent" class="hidden role_div centered">
+        <div class="match_list centered"></div>
+    </div>
+    <div id="benevole" class="hidden role_div centered">
+        <div class="match_list centered"></div>
+    </div>
+
+    <div id="utilisateur" class="hidden centered role_div">
+        <div class="match_list centered"></div>
+    </div>
+
+    <div id="arbitre" class="hidden role_div centered">
+        <div class="match_list centered"></div>
+    </div>
 
 </body>
 </html>

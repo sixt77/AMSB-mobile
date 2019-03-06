@@ -26,12 +26,9 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
-
-
-    background-attachment:fixed;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:12px;
+    background-color:whitesmoke;
+    /*background-attachment:fixed;*/
+    font-size:20px;
     height:100%;
     margin:0px;
     padding:0px;
@@ -39,27 +36,37 @@ body {
     width:100%;
 }
 
-/* Portrait layout (default) */
-.app {
-    position:absolute;             /* position in the center of the screen */
-    left:50%;
-    top:50%;
-    height:50px;                   /* text area height */
-    width:225px;                   /* text area width */
-    text-align:center;
-    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
-    /* offset horizontal: half of text area width */
+
+.centered {
+    position:fixed;
+    width: 80%;
+    right:10%;
+    margin-top: 10px;
 }
 
-/* Landscape layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
-    .app {
-        background-position:left center;
-        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
-        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
-        /* offset horizontal: half of image width and text area width */
+.logo {
+    position: fixed;
+    width: 20%;
+    top: 2%;
+    height: auto;
+    left:40%;
+    margin-bottom: 50px;
+}
+@media only screen and (max-width: 1500px){
+    .logo {
+        position: center;
+        width: 50%;
+        left: 25%;
+        top: 25%;
     }
+}
+.log {
+    position: fixed;
+    width: 40%;
+    height: auto;
+    left: 30%;
+    top: 50%;
+    margin-top: 50px;
 }
 
 h1 {
@@ -97,7 +104,10 @@ h1 {
     -webkit-animation:fade 3000ms infinite;
 }
 
-/* TEST POUR MENU LATERAL */
+.role_div{
+    position: static;
+    margin:auto;
+}
 
 .sidenav {
     height: 100%;
@@ -106,10 +116,11 @@ h1 {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color: #DD0000;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+
 }
 
 .sidenav a {
@@ -121,13 +132,14 @@ h1 {
     transition: 0.3s;
 }
 
-.testButton:hover {
-    color: #f1f1f1;
+.roleButton:hover {
+    color: whitesmoke;
 }
 
-.testButton {
-    background-color: black;
-    color: #818181;
+.roleButton {
+    font-family: Calibri, fantasy, serif;
+    background-color: #DD0000;
+    color: black;
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
@@ -137,7 +149,43 @@ h1 {
     border: none;
 }
 
+input[type=text], input[type=password]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid red;
+    border-radius: 20px;
+    font-family: Calibri, fantasy, serif;
+    text-align: center;
+    font-size: 15px;
+}
+.formButton:hover {
+    color: black;
+    border-color: black;
+}
+
+.formButton {
+    font-family: Calibri, fantasy, serif;
+    background-color: #DD0000;
+    color: whitesmoke;
+    padding: 8px 8px 8px 8px;
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+    transition: 0.3s;
+    width:100%;
+    border: 2px whitesmoke solid;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.sidenav .closebtn:hover{
+    color: whitesmoke;
+}
+
 .sidenav .closebtn {
+    color: black;
     position: absolute;
     top: 0;
     right: 25px;
@@ -155,4 +203,13 @@ h1 {
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+}
+
+div{
+    margin-bottom: 10px;
+}
+table{
+    position: absolute;
+    left: auto;
+    font-size: 12px;
 }
