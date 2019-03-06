@@ -17,7 +17,7 @@ function connect(log){
 function logOff(){
     document.getElementById('accueil').style.display = 'none';
     document.getElementById('homeText').innerText = '';
-    document.getElementById('connection').style.display ='inline-block';
+    document.getElementById('connexion').style.display ='inline-block';
     document.getElementById('menu').style.display = 'none';
     closeNav();
     hide_class("role_div");
@@ -61,6 +61,7 @@ function timestampToTime(UNIX_timestamp){
     return time;
 }
 function displayRole(role){
+    closeNav();
     hide_class("role_div");
     document.getElementById(role).style.display ="inline-block";
     if (role == "joueur"){
@@ -73,9 +74,15 @@ function displayRole(role){
         var matchs = get_all_matchs();
     }
     var match_divs = document.getElementsByClassName('match_list');
-    for (var i = 0; i < match_divs.length; i++) {
-        match_divs[i].innerHTML = display_match(matchs,role);
+    if (matchs!=null){
+        for (var i = 0; i < match_divs.length; i++) {
+            match_divs[i].innerHTML = display_match(matchs,role);
+        }
+    } else {
+        console.log("pas de match");
+        match_divs[0].innerHTML = "<p>Vous n'avez pas de matchs prévus pour le moment </p>";
     }
+
 }
 
 function hide_class(className) {
