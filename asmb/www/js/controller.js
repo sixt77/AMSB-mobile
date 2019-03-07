@@ -26,6 +26,8 @@ function logOff(){
 function addButtonRoles(user_role){
     loop = 0;
     role_list = Object.keys(user_role);
+    console.log(user_role);
+    console.log(role_list);
     for (var i in user_role) {
         if(user_role[i] != null){
             if(role_list[loop] != "utilisateur"){
@@ -35,9 +37,10 @@ function addButtonRoles(user_role){
                 btn.setAttribute("onclick", "displayRole('"+role_list[loop]+"')");
                 btn.innerHTML = role_list[loop];
                 document.getElementById('button_list').appendChild(btn);
+
             }
-            loop++;
         }
+        loop++;
     }
 }
 function changeNav(){
