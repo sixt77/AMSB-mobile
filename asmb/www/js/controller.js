@@ -5,12 +5,12 @@ function connect(log){
 
     if(user_info.user_id !== undefined){
         user_role = (get_user_info(user_info.user_id));
-        document.getElementById('connection').style.display ='none';
+        document.getElementById('connexion').style.display ='none';
         document.getElementById('accueil').style.display = 'block';
         document.getElementById('menu').style.display = 'block';
         addButtonRoles(user_role);
     }else{
-        alert('connection refusé');
+        alert('connexion refusée');
     }
 }
 
@@ -178,13 +178,13 @@ function display_player_list_on_match($id_match, îd_coach) {
         remove_class("player_list");
         remove_class("player_div");
         var player_list= get_player_list_by_id_coach($id_match, îd_coach);
-        document.getElementById($id_match).appendChild(create_element("DIV","player_list"+$id_match, "player_list", "",""));
+        document.getElementById($id_match).appendChild(create_element("ul","player_list"+$id_match, "player_list", "",""));
         var loop = 0;
         for (var i in player_list) {
             if(player_list[i] != null){
-                document.getElementById("display_"+$id_match).appendChild(create_element("DIV","player_"+player_list[loop]['id'], "player_div", "show_player_info('"+player_list[loop]['id']+"', '"+$id_match+"', '"+îd_coach+"')",""));
-                document.getElementById("player_"+player_list[loop]['id']).appendChild(create_element("P", "", "player_info", "","nom : "+player_list[i]['nom']));
-                document.getElementById("player_"+player_list[loop]['id']).appendChild(create_element("P", "", "player_info", "","prenom : "+player_list[i]['prenom']));
+                document.getElementById("display_"+$id_match).appendChild(create_element("ul","player_"+player_list[loop]['id'], "player_div", "show_player_info('"+player_list[loop]['id']+"', '"+$id_match+"', '"+îd_coach+"')",""));
+                document.getElementById("player_"+player_list[loop]['id']).appendChild(create_element("li", "", "player_info", "","nom : "+player_list[i]['nom']));
+                document.getElementById("player_"+player_list[loop]['id']).appendChild(create_element("li", "", "player_info", "","prenom : "+player_list[i]['prenom']));
                 loop++;
             }
         }
@@ -207,16 +207,16 @@ function show_player_info($player_id){
         remove_class("player_info_supp");
         remove_class("parent_info_list");
         remove_class("parent_info");
-        document.getElementById("player_"+$player_id).appendChild(create_element("P","", "player_info_supp", "", "email : "+player_profile['mail']));
-        document.getElementById("player_"+$player_id).appendChild(create_element("P","", "player_info_supp", "", "licence : "+player_profile['licence']));
-        document.getElementById("player_"+$player_id).appendChild(create_element("P","", "player_info_supp", "", "telephone : "+player_profile['telephone']));
+        document.getElementById("player_"+$player_id).appendChild(create_element("li","", "player_info_supp", "", "email : "+player_profile['mail']));
+        document.getElementById("player_"+$player_id).appendChild(create_element("li","", "player_info_supp", "", "licence : "+player_profile['licence']));
+        document.getElementById("player_"+$player_id).appendChild(create_element("li","", "player_info_supp", "", "telephone : "+player_profile['telephone']));
         if(player_profile['parent'][0] != undefined){
             for (var i = 0; i < player_profile['parent'].length; i++) {
-                document.getElementById("player_"+$player_id).appendChild(create_element("DIV","parent_"+player_profile['parent'][i]['id'], "parent_info_list", "",""));
-                document.getElementById("parent_"+player_profile['parent'][i]['id']).appendChild(create_element("P","", "parent_info", "","nom : "+player_profile['parent'][i]['nom']));
-                document.getElementById("parent_"+player_profile['parent'][i]['id']).appendChild(create_element("P","", "parent_info", "","prenom : "+player_profile['parent'][i]['prenom']));
-                document.getElementById("parent_"+player_profile['parent'][i]['id']).appendChild(create_element("P","", "parent_info", "","mail : "+player_profile['parent'][i]['mail']));
-                document.getElementById("parent_"+player_profile['parent'][i]['id']).appendChild(create_element("P","", "parent_info", "","telephone : "+player_profile['parent'][i]['telephone']));
+                document.getElementById("player_"+$player_id).appendChild(create_element("ul","parent_"+player_profile['parent'][i]['id'], "parent_info_list", "",""));
+                document.getElementById("parent_"+player_profile['parent'][i]['id']).appendChild(create_element("li","", "parent_info", "","nom : "+player_profile['parent'][i]['nom']));
+                document.getElementById("parent_"+player_profile['parent'][i]['id']).appendChild(create_element("li","", "parent_info", "","prenom : "+player_profile['parent'][i]['prenom']));
+                document.getElementById("parent_"+player_profile['parent'][i]['id']).appendChild(create_element("li","", "parent_info", "","mail : "+player_profile['parent'][i]['mail']));
+                document.getElementById("parent_"+player_profile['parent'][i]['id']).appendChild(create_element("li","", "parent_info", "","telephone : "+player_profile['parent'][i]['telephone']));
             }
         }
     }else{
@@ -231,35 +231,35 @@ function display_match(matchs,role){
     var loop = 0;
     for (var i in matchs) {
         if(matchs[i] != null){
-            document.getElementById(role).appendChild(create_element("DIV", matchs[loop]['match']['id'], "match_div", "",""));
-            document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("DIV", "match_info"+matchs[loop]['match']['id'], "", "",""));
-            document.getElementById("match_info"+matchs[loop]['match']['id']).appendChild(create_element("P", "", "match_info", "","lieux : "+matchs[loop]['match']['lieux']));
-            document.getElementById("match_info"+matchs[loop]['match']['id']).appendChild(create_element("P", "", "match_info", "","date : "+timestampToTime(matchs[loop]['match']['date'])));
-            document.getElementById("match_info"+matchs[loop]['match']['id']).appendChild(create_element("P", "", "match_info", "","equipe 1 : "+matchs[loop]['team'][0]['nom']));
-            document.getElementById("match_info"+matchs[loop]['match']['id']).appendChild(create_element("P", "", "match_info", "","equipe 2 : "+matchs[loop]['team'][1]['nom']));
+            document.getElementById(role).appendChild(create_element("ul", matchs[loop]['match']['id'], "match_div", "",""));
+            document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("ul", "match_info"+matchs[loop]['match']['id'], "", "",""));
+            document.getElementById("match_info"+matchs[loop]['match']['id']).appendChild(create_element("li", "", "match_info", "","lieu : "+matchs[loop]['match']['lieux']));
+            document.getElementById("match_info"+matchs[loop]['match']['id']).appendChild(create_element("li", "", "match_info", "","Date : "+timestampToTime(matchs[loop]['match']['date'])));
+            document.getElementById("match_info"+matchs[loop]['match']['id']).appendChild(create_element("li", "", "match_info", "","Equipe 1 : "+matchs[loop]['team'][0]['nom']));
+            document.getElementById("match_info"+matchs[loop]['match']['id']).appendChild(create_element("li", "", "match_info", "","Equipe 2 : "+matchs[loop]['team'][1]['nom']));
             closeNav();
             switch (role) {
                 case 'arbitre':
                     if(matchs[loop]['match']['selected']){
-                        document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("P", "", "match_info", "","nombre d'arbitres : "+matchs[loop]['match']['nb_arbitres']));
+                        document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("li", "", "match_info", "","nombre d'arbitres : "+matchs[loop]['match']['nb_arbitres']));
                         document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("BUTTON", "match"+[loop], "sub_button red_button", "subscribe_to_match("+matchs[loop]['match']['id']+", '"+role+"', "+matchs[loop]['match']['selected']+", "+user_role.arbitre+")","-"));
                     }else{
-                        document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("P", "", "match_info", "","nombre d'arbitres : "+matchs[loop]['match']['nb_arbitres']));
+                        document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("li", "", "match_info", "","nombre d'arbitres : "+matchs[loop]['match']['nb_arbitres']));
                         document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("BUTTON", "match"+[loop], "sub_button green_button", "subscribe_to_match("+matchs[loop]['match']['id']+", '"+role+"', "+matchs[loop]['match']['selected']+", "+user_role.arbitre+")","+"));
                     }
                     break;
                 case 'otm':
                     if(matchs[loop]['match']['selected']){
-                        document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("P", "", "match_info", "","nombre d'otm : "+matchs[loop]['match']['nb_otm']));
+                        document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("li", "", "match_info", "","nombre d'otm : "+matchs[loop]['match']['nb_otm']));
                         document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("BUTTON", "match"+[loop], "sub_button red_button", "subscribe_to_match("+matchs[loop]['match']['id']+", '"+role+"', "+matchs[loop]['match']['selected']+", "+user_role.otm+")","-"));
                     }else{
-                        document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("P", "", "match_info", "","nombre d'otm : "+matchs[loop]['match']['nb_otm']));
+                        document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("li", "", "match_info", "","nombre d'otm : "+matchs[loop]['match']['nb_otm']));
                         document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("BUTTON", "match"+[loop], "sub_button green_button", "subscribe_to_match("+matchs[loop]['match']['id']+", '"+role+"', "+matchs[loop]['match']['selected']+", "+user_role.otm+")","+"));
                     }
                     break;
                 case 'entraineur':
                     document.getElementById("match_info"+matchs[loop]['match']['id']).setAttribute("onclick", "display_player_list_on_match("+matchs[loop]['match']['id']+","+user_role.entraineur+")");
-                    document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("DIV", "display_"+matchs[loop]['match']['id'], "display_match_div", "",""));
+                    document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("ul", "display_"+matchs[loop]['match']['id'], "display_match_div", "",""));
                     break;
                 default:
             }

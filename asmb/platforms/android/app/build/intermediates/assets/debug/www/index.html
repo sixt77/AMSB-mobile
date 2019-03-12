@@ -34,14 +34,18 @@
     <input type="button" class="homeButton centered" value="Déconnexion" onclick="logOff()">
 </div>
 
-
-<div id="connection" class="log">
-    <form name="log" method="get">
-        <input type="text" class="input_text" name="mail" placeholder="identifiant"/>
-        <input type="password" class="input_text" name="pass" value=""/>
-        <input type="button" class="formButton" name="bouton" value="Valider" onclick="connect(log)"/>
-    </form>
-</div>
+<section class="log">
+    <div class="homescreen">
+        <img src="img/logo.png" alt="logo de l'association AMSB"/>
+    </div>
+    <div id="connexion" class="homescreen">
+        <form name="log" method="get">
+            <input type="text" class="input_text" name="mail" placeholder="mail"/>
+            <input type="password" class="input_text" name="pass" placeholder="password"/>
+            <input type="button" class="formButton" name="bouton" value="Valider" onclick="connect(log)"/>
+        </form>
+    </div>
+</section>
 <div id="accueil" class = "hidden centered" >
 
 
