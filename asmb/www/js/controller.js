@@ -44,7 +44,7 @@ function addButtonRoles(user_role){
     }
 }
 function changeNav(){
-    if(document.getElementById("mySidenav").style.width == "20%"){
+    if(document.getElementById("mySidenav").style.width === "20%"){
         closeNav();
     }else{
         openNav();
@@ -53,7 +53,8 @@ function changeNav(){
 
 function openNav() {
     document.getElementById("mySidenav").style.width = "20%";
-    document.getElementById("mySidenav").style.minWidth = "195px";
+    document.getElementById("mySidenav").style.minWidth = "210px";
+    document.getElementById("mySidenav").style.maxWidth = "250px";
 }
 
 function closeNav() {
@@ -240,11 +241,10 @@ function display_match(matchs,role){
             closeNav();
             switch (role) {
                 case 'arbitre':
+                    document.getElementById("match_info"+matchs[loop]['match']['id']).appendChild(create_element("li", "li"+matchs[loop]['match']['id'], "match_info", "","nombre d'arbitres : "+matchs[loop]['match']['nb_arbitres']));
                     if(matchs[loop]['match']['selected']){
-                        document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("li", "", "match_info", "","nombre d'arbitres : "+matchs[loop]['match']['nb_arbitres']));
                         document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("BUTTON", "match"+[loop], "sub_button red_button", "subscribe_to_match("+matchs[loop]['match']['id']+", '"+role+"', "+matchs[loop]['match']['selected']+", "+user_role.arbitre+")","-"));
                     }else{
-                        document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("li", "", "match_info", "","nombre d'arbitres : "+matchs[loop]['match']['nb_arbitres']));
                         document.getElementById(matchs[loop]['match']['id']).appendChild(create_element("BUTTON", "match"+[loop], "sub_button green_button", "subscribe_to_match("+matchs[loop]['match']['id']+", '"+role+"', "+matchs[loop]['match']['selected']+", "+user_role.arbitre+")","+"));
                     }
                     break;
